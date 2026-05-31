@@ -93,7 +93,88 @@
             border-color: #ffffff;
         }
 
-        /* ГОЛОВНИЙ ЕКРАН З ТАКТИЧНОЮ КАРТОЮ */
+        /* ВСПЛИВАЮЧЕ МОДАЛЬНЕ ВІКНО */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(5, 7, 11, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-window {
+            background-color: #0f1420;
+            border: 1px solid #1f2937;
+            max-width: 450px;
+            width: 100%;
+            padding: 40px 30px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+        .modal-overlay.active .modal-window {
+            transform: translateY(0);
+        }
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            border: none;
+            color: #6b7280;
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.3s;
+            line-height: 1;
+        }
+        .modal-close:hover {
+            color: #ffffff;
+        }
+        .modal-title {
+            font-size: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+        .modal-text {
+            color: #9ca3af;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        .modal-email-box {
+            background-color: #0b0f17;
+            border: 1px solid #1f2937;
+            padding: 15px;
+            font-family: monospace;
+            font-size: 16px;
+            color: #ef4444;
+            font-weight: 700;
+            display: block;
+            transition: all 0.3s;
+        }
+        .modal-email-box:hover {
+            border-color: #ef4444;
+            background-color: #111827;
+        }
+
+        /* ГОЛОВНИЙ ЕКРАН */
         .hero {
             position: relative;
             min-height: 100vh;
@@ -216,6 +297,11 @@
             display: flex;
             flex-direction: column;
             transition: border-color 0.3s;
+            color: inherit;
+        }
+        /* Добавляем pointer для первой карточки-ссылки */
+        a.product-card {
+            cursor: pointer;
         }
         .product-card:hover {
             border-color: #dc2626;
@@ -408,7 +494,7 @@
             color: #ffffff;
         }
 
-        /* АДАПТИВНІ СТИЛІ ДЛЯ МОБІЛЬНИХ ПРИСТРОЇВ (МЕДІА-ЗАПИТИ) */
+        /* АДАПТИВНІ СТИЛІ ДЛЯ МОБІЛЬНИХ ПРИСТРОЇВ */
         @media (max-width: 768px) {
             .header-container {
                 justify-content: center;
@@ -475,20 +561,32 @@
 </head>
 <body>
 
+    <!-- ШАПКА САЙТУ -->
     <header class="header">
         <div class="header-container">
             <a href="#"><img src="logo.png" alt="Karampus Defense" class="logo-img"></a>
             
             <nav class="nav-menu">
                 <a href="#">Рішення</a>
-                <a href="#">Авіація</a>
+                <a href="projects.html">Авіація</a>
                 <a href="#">Кіберзахист</a>
                 <a href="#">Про компанію</a>
             </nav>
-            <a href="mailto:makskarampus@gmail.com" class="btn-contact">Зв'язатися</a>
+            <button id="openModal" class="btn-contact">Зв'язатися</button>
         </div>
     </header>
 
+    <!-- ВСПЛИВАЮЧЕ МОДАЛЬНЕ ВІКНО -->
+    <div id="contactModal" class="modal-overlay">
+        <div class="modal-window">
+            <button id="closeModal" class="modal-close">&times;</button>
+            <div class="modal-title">Зв'язатися з нами</div>
+            <p class="modal-text">З питань співробітництва та постачання техніки пишіть на нашу пряму електронну адресу:</p>
+            <a href="mailto:makskarampus@gmail.com" class="modal-email-box">makskarampus@gmail.com</a>
+        </div>
+    </div>
+
+    <!-- ГОЛОВНИЙ ЕКРАН -->
     <section class="hero">
         <div class="hero-content">
             <div class="hero-text-block">
@@ -496,13 +594,15 @@
                 <h1>Випереджаючи час. <br><span>Захищаючи майбутнє.</span></h1>
                 <p>Karampus Defense розробляє та інтегрує автономні комплекси, авіаційні системи та оборонні технології суверенної безпеки.</p>
                 <div class="hero-buttons">
-                    <a href="#" class="btn-primary">Наші розробки</a>
-                    <a href="#" class="btn-secondary">Специфікації</a>
+                    <a href="projects.html" class="btn-primary">Наші розробки</a>
+                    <!-- Перенаправление на страницу проектов -->
+                    <a href="projects.html" class="btn-secondary">Специфікації</a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- СТРАТЕГІЧНІ НАПРЯМКИ -->
     <section class="products-section">
         <div class="section-container">
             <div class="section-title-block">
@@ -512,7 +612,8 @@
 
             <div class="grid-3">
                 
-                <div class="product-card">
+                <!-- КАРТОЧКА 1: ПОВІТРЯНІ КОМПЛЕКСИ (КЛИКАБЕЛЬНАЯ ПОЛНОСТЬЮ) -->
+                <a href="projects.html" class="product-card">
                     <div class="card-image-box">
                         <img src="https://images.unsplash.com/photo-1527482797697-8795b05a13fe?q=80&w=600" alt="Повітряні системи">
                     </div>
@@ -526,10 +627,11 @@
                             <li>• Дальність: До 1200 км</li>
                             <li>• Платформа: K-Raptor v4</li>
                         </ul>
-                        <a href="#" class="card-link">Специфікації комплексів →</a>
+                        <span class="card-link">Специфікації комплексів →</span>
                     </div>
-                </div>
+                </a>
 
+                <!-- КАРТОЧКА 2: НАЗЕМНА РОБОТОТЕХНІКА (КЛИК ТОЛЬКО ПО ССЫЛКЕ ВНИЗУ) -->
                 <div class="product-card">
                     <div class="card-image-box">
                         <img src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=600" alt="Наземна робототехніка">
@@ -544,10 +646,11 @@
                             <li>• Корисне навантаження: До 850 кг</li>
                             <li>• Платформа: K-Titan Heavy</li>
                         </ul>
-                        <a href="#" class="card-link">Каталог платформ →</a>
+                        <a href="projects.html" class="card-link">Каталог платформ →</a>
                     </div>
                 </div>
 
+                <!-- КАРТОЧКА 3: КІБЕРБЕЗПЕКА (КЛИК ТОЛЬКО ПО ССЫЛКЕ ВНИЗУ) -->
                 <div class="product-card">
                     <div class="card-image-box">
                         <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=600" alt="Кібербезпека">
@@ -562,14 +665,14 @@
                             <li>• Специфікація: Zero-Trust захист</li>
                             <li>• Ядро: Karampus Aegis OS</li>
                         </ul>
-                        <a href="#" class="card-link">Інтеграція систем →</a>
+                        <a href="projects.html" class="card-link">Інтеграція систем →</a>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
+    <!-- СТАТИСТИКА -->
     <section class="stats-section">
         <div class="section-container">
             <div class="grid-4">
@@ -597,6 +700,7 @@
         </div>
     </section>
 
+    <!-- ПІДВАЛ -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-top">
@@ -607,7 +711,7 @@
                 <div class="footer-col">
                     <h4>Продукти</h4>
                     <ul>
-                        <li><a href="#">K-Air Systems</a></li>
+                        <li><a href="projects.html">K-Air Systems</a></li>
                         <li><a href="#">K-Terra Robotics</a></li>
                         <li><a href="#">Cyber Aegis OS</a></li>
                     </ul>
@@ -643,5 +747,15 @@
         </div>
     </footer>
 
+    <!-- СКРИПТ ДЛЯ МОДАЛЬНОГО ОКНА -->
+    <script>
+        const modal = document.getElementById('contactModal');
+        const openBtn = document.getElementById('openModal');
+        const closeBtn = document.getElementById('closeModal');
+
+        openBtn.addEventListener('click', () => modal.classList.add('active'));
+        closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+        modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
+    </script>
 </body>
 </html>
