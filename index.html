@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* БАЗОВІ НАЛАШТУВАННЯ СТИЛЮ — ГАРАНТІЯ СЕТКИ ТА ТЕМНОГО ФОНУ */
+        /* БАЗОВІ НАЛАШТУВАННЯ СТИЛЮ */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -19,6 +19,7 @@
             background-color: #0b0f17;
             color: #ffffff;
             line-height: 1.6;
+            -webkit-text-size-adjust: 100%;
         }
         a {
             text-decoration: none;
@@ -31,13 +32,14 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 90px;
+            min-height: 70px;
             background-color: rgba(11, 15, 23, 0.95);
             border-bottom: 1px solid #1f2937;
             display: flex;
             align-items: center;
             z-index: 1000;
             backdrop-filter: blur(10px);
+            padding: 10px 0;
         }
         .header-container {
             max-width: 1200px;
@@ -47,15 +49,17 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
         .logo-img {
-            height: 45px;
+            height: 35px;
             width: auto;
             display: block;
         }
         .nav-menu {
             display: flex;
-            gap: 35px;
+            gap: 25px;
             font-size: 13px;
             font-weight: 600;
             letter-spacing: 1.5px;
@@ -64,13 +68,14 @@
         .nav-menu a {
             transition: color 0.3s;
             color: #9ca3af;
+            white-space: nowrap;
         }
         .nav-menu a:hover {
             color: #ffffff;
         }
         .btn-contact {
             border: 1px solid #4b5563;
-            padding: 12px 24px;
+            padding: 10px 20px;
             font-size: 11px;
             font-weight: 600;
             text-transform: uppercase;
@@ -89,11 +94,10 @@
         /* ГОЛОВНИЙ ЕКРАН З ТАКТИЧНОЮ КАРТОЮ */
         .hero {
             position: relative;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 0 20px;
-            /* Використовує мапу України map.jpg як бекграунд */
+            padding: 120px 20px 60px 20px;
             background: linear-gradient(90deg, #0b0f17 45%, rgba(11, 15, 23, 0.6) 100%), 
                         url('map.jpg') center/cover no-repeat;
         }
@@ -104,7 +108,6 @@
         }
         .hero-text-block {
             max-width: 650px;
-            margin-top: 60px;
         }
         .subtitle {
             font-size: 12px;
@@ -143,16 +146,21 @@
         }
         .hero-buttons {
             display: flex;
-            gap: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
         }
-        .btn-primary {
-            background-color: #dc2626;
-            color: #ffffff;
+        .btn-primary, .btn-secondary {
+            display: inline-block;
+            text-align: center;
             padding: 16px 32px;
             font-size: 12px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
+        }
+        .btn-primary {
+            background-color: #dc2626;
+            color: #ffffff;
             transition: background 0.3s;
         }
         .btn-primary:hover {
@@ -161,11 +169,6 @@
         .btn-secondary {
             border: 1px solid #ffffff;
             color: #ffffff;
-            padding: 16px 32px;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
             transition: all 0.3s;
         }
         .btn-secondary:hover {
@@ -175,7 +178,7 @@
 
         /* РОЗДІЛ СТРАТЕГІЧНИХ НАПРЯМКІВ */
         .products-section {
-            padding: 120px 20px;
+            padding: 100px 20px;
             border-top: 1px solid #1f2937;
             background-color: #0b0f17;
         }
@@ -185,7 +188,7 @@
             margin: 0 auto;
         }
         .section-title-block {
-            margin-bottom: 60px;
+            margin-bottom: 50px;
         }
         .section-tag {
             font-size: 12px;
@@ -202,7 +205,7 @@
         }
         .grid-3 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
             gap: 30px;
         }
         .product-card {
@@ -232,7 +235,7 @@
             transform: scale(1.05);
         }
         .card-content {
-            padding: 35px;
+            padding: 25px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -246,7 +249,7 @@
             letter-spacing: 1px;
         }
         .card-title {
-            font-size: 24px;
+            font-size: 22px;
             text-transform: uppercase;
             margin-bottom: 15px;
             transition: color 0.3s;
@@ -292,13 +295,13 @@
         /* БЛОК ГЛОБАЛЬНОЇ СТАТИСТИКИ */
         .stats-section {
             background-color: #070b12;
-            padding: 90px 20px;
+            padding: 80px 20px;
             border-top: 1px solid #1f2937;
             border-bottom: 1px solid #1f2937;
         }
         .grid-4 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 40px;
         }
         .stat-item {
@@ -317,7 +320,7 @@
             margin-bottom: 8px;
         }
         .stat-number {
-            font-size: 54px;
+            font-size: 48px;
             font-weight: 700;
             margin-bottom: 10px;
             letter-spacing: -1px;
@@ -331,7 +334,7 @@
         /* ПІДВАЛ САЙТУ (FOOTER) */
         .footer {
             background-color: #05070b;
-            padding: 80px 20px 40px 20px;
+            padding: 60px 20px 30px 20px;
             font-size: 14px;
             border-top: 1px solid #111827;
         }
@@ -342,9 +345,9 @@
         }
         .footer-top {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 50px;
-            margin-bottom: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
         }
         .footer-brand .logo-img {
             margin-bottom: 20px;
@@ -361,13 +364,13 @@
             text-transform: uppercase;
             letter-spacing: 1.5px;
             color: #ffffff;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         .footer-col ul {
             list-style: none;
         }
         .footer-col ul li {
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
         .footer-col ul li a {
             color: #9ca3af;
@@ -381,10 +384,11 @@
             border-top: 1px solid #111827;
             padding-top: 30px;
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
             justify-content: space-between;
             gap: 20px;
             align-items: center;
+            text-align: center;
         }
         .footer-legal {
             font-size: 12px;
@@ -392,12 +396,78 @@
         }
         .footer-links {
             display: flex;
-            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
             font-size: 12px;
             color: #6b7280;
         }
         .footer-links a:hover {
             color: #ffffff;
+        }
+
+        /* АДАПТИВНІ СТИЛІ ДЛЯ МОБІЛЬНИХ ПРИСТРОЇВ (МЕДІА-ЗАПИТИ) */
+        @media (max-width: 768px) {
+            .header-container {
+                justify-content: center; /* Центруємо логотип та меню на маленьких екранах */
+            }
+            .nav-menu {
+                order: 3; /* Переносимо навігацію під логотип та кнопку */
+                width: 100%;
+                justify-content: center;
+                overflow-x: auto; /* Дозволяємо горизонтальну прокрутку меню, якщо воно не влазить */
+                padding: 5px 0;
+                gap: 15px;
+            }
+            .nav-menu a {
+                font-size: 11px;
+            }
+            .hero {
+                background: linear-gradient(180deg, #0b0f17 60%, rgba(11, 15, 23, 0.8) 100%), 
+                            url('map.jpg') center/cover no-repeat;
+                text-align: center;
+                padding-top: 140px;
+            }
+            .subtitle {
+                justify-content: center;
+            }
+            .hero h1 {
+                font-size: 32px; /* Зменшуємо головний шрифт */
+            }
+            .hero p {
+                font-size: 15px;
+            }
+            .hero-buttons {
+                justify-content: center;
+                flex-direction: column; /* Кнопки стають одна під одною */
+                width: 100%;
+            }
+            .btn-primary, .btn-secondary {
+                width: 100%;
+            }
+            .section-title {
+                font-size: 28px;
+            }
+            .products-section {
+                padding: 60px 20px;
+            }
+            .stat-item {
+                border-left: none;
+                border-top: 2px solid #1f2937; /* Замість лівої лінії робимо верхню */
+                padding-left: 0;
+                padding-top: 15px;
+            }
+            .stat-item:hover {
+                border-top-color: #dc2626;
+                border-left-color: transparent;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .footer-bottom {
+                flex-direction: row;
+                text-align: left;
+            }
         }
     </style>
 </head>
