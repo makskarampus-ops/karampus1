@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karampus Defense | Передові Оборонні Технології</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* БАЗОВІ НАЛАШТУВАННЯ СТИЛЮ — ГАРАНТІЯ СЕТКИ ТА ТЕМНОГО ФОНУ */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0f17;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ШАПКА САЙТУ */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 90px;
+            background-color: rgba(11, 15, 23, 0.95);
+            border-bottom: 1px solid #1f2937;
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        .header-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo-img {
+            height: 45px;
+            width: auto;
+            display: block;
+        }
+        .nav-menu {
+            display: flex;
+            gap: 35px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        .nav-menu a {
+            transition: color 0.3s;
+            color: #9ca3af;
+        }
+        .nav-menu a:hover {
+            color: #ffffff;
+        }
+        .btn-contact {
+            border: 1px solid #4b5563;
+            padding: 12px 24px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s;
+            color: #ffffff;
+            background: transparent;
+            cursor: pointer;
+        }
+        .btn-contact:hover {
+            background-color: #ffffff;
+            color: #000000;
+            border-color: #ffffff;
+        }
+
+        /* ГОЛОВНИЙ ЕКРАН З ТАКТИЧНОЮ КАРТОЮ */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            /* Використовує мапу України map.jpg як бекграунд */
+            background: linear-gradient(90deg, #0b0f17 45%, rgba(11, 15, 23, 0.6) 100%), 
+                        url('map.jpg') center/cover no-repeat;
+        }
+        .hero-content {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        .hero-text-block {
+            max-width: 650px;
+            margin-top: 60px;
+        }
+        .subtitle {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ef4444;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .subtitle::before {
+            content: "";
+            display: inline-block;
+            width: 20px;
+            height: 2px;
+            background: #ef4444;
+        }
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            letter-spacing: -1px;
+        }
+        .hero h1 span {
+            color: #4b5563;
+        }
+        .hero p {
+            color: #9ca3af;
+            font-size: 18px;
+            font-weight: 300;
+            margin-bottom: 40px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+        .btn-primary {
+            background-color: #dc2626;
+            color: #ffffff;
+            padding: 16px 32px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: background 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #b91c1c;
+        }
+        .btn-secondary {
+            border: 1px solid #ffffff;
+            color: #ffffff;
+            padding: 16px 32px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s;
+        }
+        .btn-secondary:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        /* РОЗДІЛ СТРАТЕГІЧНИХ НАПРЯМКІВ */
+        .products-section {
+            padding: 120px 20px;
+            border-top: 1px solid #1f2937;
+            background-color: #0b0f17;
+        }
+        .section-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        .section-title-block {
+            margin-bottom: 60px;
+        }
+        .section-tag {
+            font-size: 12px;
+            color: #ef4444;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .section-title {
+            font-size: 38px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        .product-card {
+            background-color: #0f1420;
+            border: 1px solid #1f2937;
+            display: flex;
+            flex-direction: column;
+            transition: border-color 0.3s;
+        }
+        .product-card:hover {
+            border-color: #dc2626;
+        }
+        .card-image-box {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        .card-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: all 0.6s;
+        }
+        .product-card:hover .card-image-box img {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+        .card-content {
+            padding: 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+        .card-division {
+            font-family: monospace;
+            color: #4b5563;
+            font-size: 12px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        .card-title {
+            font-size: 24px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            transition: color 0.3s;
+            font-weight: 700;
+        }
+        .product-card:hover .card-title {
+            color: #ef4444;
+        }
+        .card-description {
+            color: #9ca3af;
+            font-size: 14px;
+            font-weight: 300;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .card-specs {
+            border-top: 1px solid rgba(31, 41, 55, 0.6);
+            padding-top: 20px;
+            list-style: none;
+            font-family: monospace;
+            font-size: 12px;
+            color: #6b7280;
+        }
+        .card-specs li {
+            margin-bottom: 6px;
+        }
+        .card-link {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #1f2937;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: block;
+            transition: transform 0.3s;
+            color: #ffffff;
+        }
+        .product-card:hover .card-link {
+            transform: translateX(5px);
+        }
+
+        /* БЛОК ГЛОБАЛЬНОЇ СТАТИСТИКИ */
+        .stats-section {
+            background-color: #070b12;
+            padding: 90px 20px;
+            border-top: 1px solid #1f2937;
+            border-bottom: 1px solid #1f2937;
+        }
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+        }
+        .stat-item {
+            border-left: 2px solid #1f2937;
+            padding-left: 20px;
+            transition: border-color 0.3s;
+        }
+        .stat-item:hover {
+            border-left-color: #dc2626;
+        }
+        .stat-label {
+            font-family: monospace;
+            color: #4b5563;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+        }
+        .stat-number {
+            font-size: 54px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+        .stat-desc {
+            color: #9ca3af;
+            font-size: 13px;
+            font-weight: 300;
+        }
+
+        /* ПІДВАЛ САЙТУ (FOOTER) */
+        .footer {
+            background-color: #05070b;
+            padding: 80px 20px 40px 20px;
+            font-size: 14px;
+            border-top: 1px solid #111827;
+        }
+        .footer-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        .footer-top {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        .footer-brand .logo-img {
+            margin-bottom: 20px;
+        }
+        .footer-brand p {
+            color: #6b7280;
+            font-size: 12px;
+            max-width: 250px;
+            line-height: 1.5;
+        }
+        .footer-col h4 {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+        .footer-col ul li a {
+            color: #9ca3af;
+            font-size: 13px;
+            transition: color 0.3s;
+        }
+        .footer-col ul li a:hover {
+            color: #ef4444;
+        }
+        .footer-bottom {
+            border-top: 1px solid #111827;
+            padding-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: center;
+        }
+        .footer-legal {
+            font-size: 12px;
+            color: #4b5563;
+        }
+        .footer-links {
+            display: flex;
+            gap: 25px;
+            font-size: 12px;
+            color: #6b7280;
+        }
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-container">
+            <a href="#"><img src="logo.png" alt="Karampus Defense" class="logo-img"></a>
+            
+            <nav class="nav-menu">
+                <a href="#">Рішення</a>
+                <a href="#">Авіація</a>
+                <a href="#">Кіберзахист</a>
+                <a href="#">Про компанію</a>
+            </nav>
+            <button class="btn-contact">Зв'язатися</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text-block">
+                <div class="subtitle">Безпека нового покоління</div>
+                <h1>Випереджаючи час. <br><span>Захищаючи майбутнє.</span></h1>
+                <p>Karampus Defense розробляє та інтегрує автономні комплекси, авіаційні системи та оборонні технології суверенної безпеки.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn-primary">Наші розробки</a>
+                    <a href="#" class="btn-secondary">Специфікації</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="products-section">
+        <div class="section-container">
+            <div class="section-title-block">
+                <div class="section-tag">// СТРАТЕГІЧНІ НАПРЯМКИ</div>
+                <h2 class="section-title">Екосистема безпеки Karampus</h2>
+            </div>
+
+            <div class="grid-3">
+                
+                <div class="product-card">
+                    <div class="card-image-box">
+                        <img src="https://images.unsplash.com/photo-1527482797697-8795b05a13fe?q=80&w=600" alt="Повітряні системи">
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-division">[ K-AIR DIVISION ]</div>
+                            <h3 class="card-title">Повітряні комплекси та БПЛА</h3>
+                            <p class="card-description">Розробка безпілотних авіаційних систем стратегічної розвідки. Автономні комплекси з інтегрованим ШІ.</p>
+                        </div>
+                        <ul class="card-specs">
+                            <li>• Дальність: До 1200 км</li>
+                            <li>• Платформа: K-Raptor v4</li>
+                        </ul>
+                        <a href="#" class="card-link">Специфікації комплексів →</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="card-image-box">
+                        <img src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=600" alt="Наземна робототехніка">
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-division">[ K-TERRA DIVISION ]</div>
+                            <h3 class="card-title">Наземна робототехніка</h3>
+                            <p class="card-description">Автономні тактичні платформи для патрулювання, розмінування та підтримки у зонах підвищеного ризику.</p>
+                        </div>
+                        <ul class="card-specs">
+                            <li>• Корисне навантаження: До 850 кг</li>
+                            <li>• Платформа: K-Titan Heavy</li>
+                        </ul>
+                        <a href="#" class="card-link">Каталог платформ →</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="card-image-box">
+                        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=600" alt="Кібербезпека">
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-division">[ K-CYBER DIVISION ]</div>
+                            <h3 class="card-title">Кіберзахист та ШІ</h3>
+                            <p class="card-description">Программні комплекси для захисту критичної інфраструктури. Шифрування квантового рівня.</p>
+                        </div>
+                        <ul class="card-specs">
+                            <li>• Специфікація: Zero-Trust захист</li>
+                            <li>• Ядро: Karampus Aegis OS</li>
+                        </ul>
+                        <a href="#" class="card-link">Інтеграція систем →</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="section-container">
+            <div class="grid-4">
+                <div class="stat-item">
+                    <div class="stat-label">[ R&D INVESTMENTS ]</div>
+                    <div class="stat-number">35%</div>
+                    <div class="stat-desc">Щорічного бюджету спрямовується на системи ШІ.</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">[ PATENTS ]</div>
+                    <div class="stat-number">140+</div>
+                    <div class="stat-desc">Зареєстрованих патентів у сфері БПЛА.</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">[ ENGINEERS ]</div>
+                    <div class="stat-number">2.5K</div>
+                    <div class="stat-desc">Провідних інженерів та науковців у штаті.</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">[ READINESS ]</div>
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-desc">Безперервний моніторинг розгорнутих систем.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <img src="logo.png" alt="Karampus Defense" class="logo-img">
+                    <p>Глобальний постачальник систем національної безпеки, суверенних технологій та аерокосмічних комплексів нового покоління.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Продукти</h4>
+                    <ul>
+                        <li><a href="#">K-Air Systems</a></li>
+                        <li><a href="#">K-Terra Robotics</a></li>
+                        <li><a href="#">Cyber Aegis OS</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Корпорація</h4>
+                    <ul>
+                        <li><a href="#">Про компанію</a></li>
+                        <li><a href="#">Інженерія та R&D</a></li>
+                        <li><a href="#">Прес-центр</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Партнерам</h4>
+                    <ul>
+                        <li><a href="#">Закупівлі та Постачання</a></li>
+                        <li><a href="#">Комплаєнс</a></li>
+                        <li><a href="#">Контакти</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-legal">
+                    &copy; 2026 Karampus Defense. Всі права захищені.
+                </div>
+                <div class="footer-links">
+                    <a href="#">Умови використання</a>
+                    <a href="#">Конфіденційність</a>
+                    <a href="#">Безпека систем</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
