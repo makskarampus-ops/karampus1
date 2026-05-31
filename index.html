@@ -84,6 +84,8 @@
             color: #ffffff;
             background: transparent;
             cursor: pointer;
+            display: inline-block;
+            text-align: center;
         }
         .btn-contact:hover {
             background-color: #ffffff;
@@ -409,13 +411,13 @@
         /* АДАПТИВНІ СТИЛІ ДЛЯ МОБІЛЬНИХ ПРИСТРОЇВ (МЕДІА-ЗАПИТИ) */
         @media (max-width: 768px) {
             .header-container {
-                justify-content: center; /* Центруємо логотип та меню на маленьких екранах */
+                justify-content: center;
             }
             .nav-menu {
-                order: 3; /* Переносимо навігацію під логотип та кнопку */
+                order: 3;
                 width: 100%;
                 justify-content: center;
-                overflow-x: auto; /* Дозволяємо горизонтальну прокрутку меню, якщо воно не влазить */
+                overflow-x: auto;
                 padding: 5px 0;
                 gap: 15px;
             }
@@ -432,14 +434,14 @@
                 justify-content: center;
             }
             .hero h1 {
-                font-size: 32px; /* Зменшуємо головний шрифт */
+                font-size: 32px;
             }
             .hero p {
                 font-size: 15px;
             }
             .hero-buttons {
                 justify-content: center;
-                flex-direction: column; /* Кнопки стають одна під одною */
+                flex-direction: column;
                 width: 100%;
             }
             .btn-primary, .btn-secondary {
@@ -453,7 +455,7 @@
             }
             .stat-item {
                 border-left: none;
-                border-top: 2px solid #1f2937; /* Замість лівої лінії робимо верхню */
+                border-top: 2px solid #1f2937;
                 padding-left: 0;
                 padding-top: 15px;
             }
@@ -483,7 +485,7 @@
                 <a href="#">Кіберзахист</a>
                 <a href="#">Про компанію</a>
             </nav>
-            <button class="btn-contact">Зв'язатися</button>
+            <a href="mailto:makskarampus@gmail.com" class="btn-contact">Зв'язатися</a>
         </div>
     </header>
 
