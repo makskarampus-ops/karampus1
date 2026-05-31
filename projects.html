@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Специфікації Комплексів | Karampus Defense</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0f17;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ШАПКА */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            min-height: 70px;
+            background-color: rgba(11, 15, 23, 0.95);
+            border-bottom: 1px solid #1f2937;
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            padding: 10px 0;
+        }
+        .header-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo-img {
+            height: 35px;
+            width: auto;
+        }
+        .btn-back {
+            border: 1px solid #ffffff;
+            padding: 10px 20px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s;
+            background: transparent;
+            color: #ffffff;
+            cursor: pointer;
+        }
+        .btn-back:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        /* ОСНОВНОЙ КОНТЕНТ */
+        .main-content {
+            padding: 140px 20px 80px 20px;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        .page-title-block {
+            margin-bottom: 60px;
+            border-left: 3px solid #dc2626;
+            padding-left: 20px;
+        }
+        .page-tag {
+            font-size: 12px;
+            color: #ef4444;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .page-title {
+            font-size: 42px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        /* КАТАЛОГ БПЛА СПИСКОМ СВЕРХУ ВНИЗ */
+        .drone-list {
+            display: flex;
+            flex-direction: column;
+            gap: 50px; /* Отступы между моделями */
+        }
+        
+        .drone-item {
+            display: flex;
+            background-color: #0f1420;
+            border: 1px solid #1f2937;
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+        
+        .drone-item:hover {
+            border-color: #ef4444;
+        }
+        
+        /* Блок с фотографией БПЛА */
+        .drone-image-box {
+            flex: 1;
+            min-width: 40%;
+            max-height: 350px;
+            overflow: hidden;
+        }
+        
+        .drone-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(20%);
+            transition: transform 0.5s, filter 0.5s;
+        }
+        
+        .drone-item:hover .drone-image-box img {
+            filter: grayscale(0%);
+            transform: scale(1.03);
+        }
+        
+        /* Блок с текстом и ТТХ */
+        .drone-info-box {
+            flex: 1.2;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .drone-title {
+            font-size: 24px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+        
+        .drone-desc {
+            font-size: 14px;
+            color: #9ca3af;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+        
+        .drone-specs {
+            border-top: 1px solid rgba(31, 41, 55, 0.8);
+            padding-top: 20px;
+            list-style: none;
+            font-family: monospace;
+            font-size: 13px;
+            color: #ef4444;
+        }
+        
+        .drone-specs li {
+            margin-bottom: 8px;
+            color: #9ca3af;
+        }
+        
+        .drone-specs li span {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        /* ПОДВАЛ */
+        .footer {
+            background-color: #05070b;
+            padding: 40px 20px;
+            font-size: 12px;
+            color: #4b5563;
+            text-align: center;
+            border-top: 1px solid #111827;
+        }
+
+        /* АДАПТИВНОСТЬ ДЛЯ ТЕЛЕФОНОВ (картинка сверху, текст снизу) */
+        @media (max-width: 768px) {
+            .page-title { font-size: 28px; }
+            .main-content { padding-top: 110px; }
+            
+            .drone-item {
+                flex-direction: column;
+            }
+            .drone-image-box {
+                min-height: 220px;
+            }
+            .drone-info-box {
+                padding: 25px;
+            }
+            .drone-title {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html"><img src="logo.png" alt="Karampus Defense" class="logo-img"></a>
+            <a href="index.html" class="btn-back">На Головну</a>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="page-title-block">
+            <div class="page-tag">// АВІАЦІЙНЕ КРИЛО DEFENSE</div>
+            <h1 class="page-title">Специфікації Комплексів БПЛА</h1>
+        </div>
+
+        <div class="drone-list">
+            
+            <div class="drone-item">
+                <div class="drone-image-box">
+                    <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=800" alt="Karampus K-Raptor v4">
+                </div>
+                <div class="drone-info-box">
+                    <h2 class="drone-title">Karampus K-Raptor v4</h2>
+                    <p class="drone-desc">Стратегічний комплекс розвідки та спостереження дальнього радіусу дії. Призначений для автономного патрулювання кордонів та виявлення замаскованих позицій супротивника.</p>
+                    <ul class="drone-specs">
+                        <li>• Дальність польоту: <span>1200 км</span></li>
+                        <li>• Стеля висоти: <span>11,000 метрів</span></li>
+                        <li>• Оптика: <span>Тепловізор 4K з ШІ-трекінгом цілей</span></li>
+                        <li>• Захист: <span>Імунітет до засобів РЕБ (оптична навігація)</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="drone-item">
+                <div class="drone-image-box">
+                    <img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?q=80&w=800" alt="Karampus Shadow Strike">
+                </div>
+                <div class="drone-info-box">
+                    <h2 class="drone-title">Karampus Shadow Strike</h2>
+                    <p class="drone-desc">Ударний безпілотний комплекс літакового типу. Виконаний з композитних матеріалів, що забезпечують мінімальну помітність для ворожих радарів систем ППО.</p>
+                    <ul class="drone-specs">
+                        <li>• Дальність дії: <span>650 км</span></li>
+                        <li>• Озброєння: <span>Високоточні керовані мікроракети</span></li>
+                        <li>• Крейсерська швидкість: <span>140 км/год</span></li>
+                        <li>• Тип запуску: <span>Катапульта або злітна смуга</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="drone-item">
+                <div class="drone-image-box">
+                    <img src="https://images.unsplash.com/photo-1527977966376-1c8408f9f108?q=80&w=800" alt="Karampus Sky Sentinel">
+                </div>
+                <div class="drone-info-box">
+                    <h2 class="drone-title">Karampus Sky Sentinel</h2>
+                    <p class="drone-desc">Оперативно-тактичний розвідник мультироторного типу. Використовується для коригування вогню в реальному часі та цілодобового моніторингу закритих зон.</p>
+                    <ul class="drone-specs">
+                        <li>• Час у повітрі: <span>до 16 годин безперервно</span></li>
+                        <li>• Радіус зв'язку: <span>90 км (захищений даталінк)</span></li>
+                        <li>• Корисне навантаження: <span>Лазерний далекомір, LiDAR</span></li>
+                        <li>• Особливість: <span>Гібридна во воднева силова установка</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="drone-item">
+                <div class="drone-image-box">
+                    <img src="https://images.unsplash.com/photo-1508193638397-1c4234db14d8?q=80&w=800" alt="Крій-М Aegis Swarm">
+                </div>
+                <div class="drone-info-box">
+                    <h2 class="drone-title">Крій-М "Aegis Swarm"</h2>
+                    <p class="drone-desc">Швидкісний тактичний квадрокоптер-перехоплювач. Спроектований для полювання на розвідувальні безпілотники супротивника шляхом кінетичного тарану або вистрілювання сітки.</p>
+                    <ul class="drone-specs">
+                        <li>• Максимальна швидкість: <span>210 км/год</span></li>
+                        <li>• Час розгортання: <span>45 секунд з контейнера</span></li>
+                        <li>• Режим польоту: <span>Повний автопілот під керуванням бортового ШІ</span></li>
+                        <li>• Радіус дії: <span>25 км</span></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        &copy; 2026 Karampus Defense. Всі права захищені. Технічна документація рівня секретності K-3.
+    </footer>
+
+</body>
+</html>
